@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Hello world! {{car}}</p>
+    <p>{{contact}}</p>
+    <form method="POST", action="">
+        {% csrf_token %}
+        <input type="text" name="query">
+        <input type="submit">
+    </form>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in contacts %}
+            <tr>
+                <td>{{item.name}}</td>
+                
+                <td><a href="{% url 'article:delete' item.pk %}">Delete</a></td>
+                <td><a href="{% url 'article:update' item.pk %}">Edit</a></td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

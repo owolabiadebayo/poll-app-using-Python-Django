@@ -1,0 +1,44 @@
+{% extends "poll/home.html" %} {% block main %}
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Poll Result</h3>
+      </div>
+
+      <div class="panel-body">
+        <h3>{{ question.question_text }}</h3>
+      </div>
+
+      <ul class="list-group">
+        {% for choice in question.choice_set.all %} 
+        <li class="list-group-item">
+            <strong>{{ choice.choice_text }}</strong>
+          </li> --> {{ choice.votes }} &mdash;
+          <em>Total vote{{ choice.votes|pluralize }}</em>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="panel-footer">
+        <button>
+          <a href="{% url 'poll:detail' question.id %}"
+            ><strong>Vote again?</strong></a
+          >&mdash;
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- <h1>{{ question.question_text }}</h1>
+
+<ul>
+  {% for choice in question.choice_set.all %}
+  <li>
+    {{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize
+    }}
+  </li>
+  {% endfor %}
+</ul> -->
